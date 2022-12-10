@@ -9,7 +9,7 @@
         @endfor --}}
 
         @forelse ($products as $product)
-            <livewire:product />
+            <livewire:product :data="$product" />
         @empty
             <span class="absolute left-1/2 -translate-x-1/2 capitalize text-2xl text-gray-500 text-center w-full">no
                 products yet</span>

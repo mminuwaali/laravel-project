@@ -1,5 +1,5 @@
 @extends('layout.shop')
 
 @section('content')
-    <livewire:carts />
+    <livewire:carts :data="$carts" />
 @endsection

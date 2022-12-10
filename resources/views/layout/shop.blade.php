@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    @include('modal')
     <livewire:header />
     <main class="w-screen flex flex-col px-4 items-center md:px-[6vw] py-8 overflow-auto gap-8">
         @yield('content')
