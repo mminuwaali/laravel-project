@@ -9,7 +9,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Form\ContactController;
 use App\Http\Controllers\Form\SubscribeController;
-use App\Http\Controllers\Shop\CartController;
+use App\Http\Controllers\Shop\CartsController;
 use App\Http\Controllers\Shop\FavoriteController;
 use App\Http\Controllers\Table\CategoryController;
 use App\Http\Controllers\Table\ProductController;
@@ -44,5 +44,5 @@ Route::resource('subscribe', SubscribeController::class)->names('subscribe')->on
 Route::resource('contact', ContactController::class)->names('contact')->only('index', 'store');
 
 // shopping routes
-Route::resource('cart', CartController::class)->names('cart');
+Route::resource('cart', CartsController::class)->names('cart');
 Route::resource('favorite', FavoriteController::class)->names('favorite');

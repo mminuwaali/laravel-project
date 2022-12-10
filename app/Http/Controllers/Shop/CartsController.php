@@ -7,13 +7,13 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CartController extends Controller
+class CartsController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +43,16 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->product);
+        $this->validate($request, ['product_id' => 'required']);
+
+        Cart::create([...$request->all(),'user_id' => Auth::user()->id]);
+        return redirect()->back()->with('status', ['type' => 'green', 'message' => "product added to cart"]);
+
+        // $cart = Cart::firstwhere('product_id', $request->product_id);
+        // if ($cart) {
+        //     $cart->update(['quantity' => $cart->quantity++]);
+        // } else {}
+
     }
 
     /**

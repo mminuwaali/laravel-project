@@ -29,7 +29,7 @@ class MainController extends Controller
     public function category($category)
     {
         $categories = Category::all();
-        $products = $category == 'all' ? Product::latest()->paginate(12) : Category::find($category)->latest()->paginate(12);
+        $products = $category == 'all' ? Product::latest()->paginate(12) : Category::find($category)->products->all();
         // $products =   Product::latest()->paginate(12);
         return view('page.category', compact('categories', 'products'))->with('i', (request()->input('page', 1) - 1) * 12);
     }
@@ -43,8 +43,8 @@ class MainController extends Controller
 
     public function product($product)
     {
-        // $product = Product::find($product);
-        $product = new Dumy();
+        $product = Product::find($product);
+        // $product = new Dumy();
         return view('page.product', compact('product'));
     }
 

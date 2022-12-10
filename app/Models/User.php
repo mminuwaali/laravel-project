@@ -45,17 +45,17 @@ class User extends Authenticatable
 
     public function carts()
     {
-        $this->hasMany(Cart::class);
+        return $this->hasMany(Cart::class);
     }
 
     public function favorites()
     {
-        $this->hasMany(Favorite::class);
+        return $this->hasMany(Favorite::class);
     }
 
     public function orders()
     {
-        $this->hasMany(Order::class);
+        return $this->hasMany(Order::class);
     }
 
 }
