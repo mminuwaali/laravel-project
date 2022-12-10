@@ -18,8 +18,8 @@ return new class extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Product::class);
+            $table->foreignIdFor(User::class, 'user_id')->onCascade('delete');
+            $table->foreignIdFor(Product::class, 'product_id')->onCascade('delete');
         });
     }
 

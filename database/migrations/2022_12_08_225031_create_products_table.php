@@ -20,9 +20,10 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->float('price');
+            $table->string("image");
             $table->integer('quantity');
-            $table->foreignId(User::class);
-            $table->foreignId(Category::class);
+            $table->foreignIdFor(User::class, 'user_id')->onCascade('delete');
+            $table->foreignIdFor(Category::class, 'category_id')->onCascade('delete');
             $table->integer('discount')->min(0)->max(100);
             $table->text('description');
         });

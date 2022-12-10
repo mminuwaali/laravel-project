@@ -4,10 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
+
+    public $perPage = 12;
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +26,11 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $orders = Order::latest()->paginate($this->perPage);
+        $tables = ["product" => Product::class, "category" => Category::class];
+        asort($tables);
+
+        return view('admin.index', compact("tables","orders"))->with('i', (request()->input('page', 1) - 1) * $this->perPage);
     }
 
     /**
@@ -25,7 +40,10 @@ class IndexController extends Controller
      */
     public function create()
     {
-        //
+        $tables = ["product" => Product::class, "category" => Category::class];
+        asort($tables);
+
+        return view('admin.tables', compact("tables"));
     }
 
     /**
@@ -47,7 +65,8 @@ class IndexController extends Controller
      */
     public function show(Model $table)
     {
-        //
+        $table::latest()->paginate($this->perPage);
+        return view('');
     }
 
     /**

@@ -1,5 +1,6 @@
 <form action="{{ route('login.store') }}" method="post"
-    class="w-full bg-white flex flex-col px-[18%] py-20 md:p-1/5 gap-8 justify-center items-center">
+class="w-full bg-white flex flex-col px-[18%] py-20 md:p-1/5 gap-8 justify-center items-center">
+@csrf
     <div class="w-full flex flex-col items-start justify-center gap-2">
         <img src="" alt="">
         <h2 class="font-bold text-3xl md:text-4xl">Sign in to your account</h2>
@@ -28,7 +29,7 @@
         <span class="w-full flex items-center justify-between">
             <div class="flex gap-2 items-center w-full">
                 <input type="checkbox" name="remember" />
-                <i class="capitalize">remember me</i>
+                <label for="remember" class="capitalize">remember me</label>
             </div>
             <a href="#" class="capitalize whitespace-nowrap text-blue-400">forgot your password?</a>
         </span>

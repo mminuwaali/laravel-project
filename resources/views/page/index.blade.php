@@ -2,7 +2,18 @@
 
 @section('content')
     <livewire:slideshow />
-    <livewire:products />
+    <section id="products" class="flex flex-col">
+        <div
+            class="mt-6 grid grid-cols-1 gap-y-10 items-center justify-center gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 relative">
+            @forelse ($products as $product)
+                <livewire:product :data="$product" />
+            @empty
+                <span class="absolute left-1/2 -translate-x-1/2 capitalize text-2xl text-gray-500 text-center w-full">no
+                    products yet</span>
+            @endforelse
+            {{ $products->links() }}
+    </section>
+
     <div class="bg-white">
         <div
             class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">

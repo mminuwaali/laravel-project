@@ -12,10 +12,16 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
+        'image',
         'user_id',
-        'quabtity',
+        'quantity',
         'discount',
         'category_id',
         'description',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

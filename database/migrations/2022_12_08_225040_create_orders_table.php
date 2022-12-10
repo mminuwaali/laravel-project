@@ -17,8 +17,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
             $table->timestamps();
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class, 'user_id')->onCascade('delete');
             $table->enum('status',['pending','failed', 'delivered'])->default('pending');
         });
     }

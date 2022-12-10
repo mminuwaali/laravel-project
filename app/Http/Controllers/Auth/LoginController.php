@@ -41,9 +41,9 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['email' => 'required|email', 'password' => 'required|min:8']);
+        $request->validate(['username' => 'required', 'password' => 'required|min:8']);
 
-        if (!auth()->attempt($request->only('email', 'password'))) return redirect()->back()->with('status', ['type' => 'red', 'message' => 'invalid credentials']);
+        if (!auth()->attempt($request->only('username', 'password'))) return redirect()->back()->with('status', ['type' => 'red', 'message' => 'invalid credentials']);
         return redirect()->route('index');
     }
 

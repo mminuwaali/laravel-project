@@ -6,8 +6,8 @@
         <main class="grow flex flex-col gap-1">
             @for ($i = 0; $i < 6; $i++)
                 <div class="flex w-full border-b-2 border-b-gray-300 p-8 gap-8">
-                    <div class="basis-64 w-64 bg-gray-200 rounded relative aspect-square">
-                        {{-- <img src="" alt="" class="absolute w-full h-full object-cover"> --}}
+                    <div class="basis-64 w-64 bg-gray-200 rounded relative aspect-square overflow-hidden">
+                        <img src="{{ url('images/authentication.jpg') }}" alt="" class="absolute w-full h-full object-cover">
                     </div>
                     <div class="grow w-full flex flex-col justify-between">
                         <div class="w-full flex items-center justify-between">

@@ -21,16 +21,17 @@ class MainController extends Controller
     public function index()
     {
         $per_page = 12;
-        // $products = Product::latest()->paginate($per_page);
-        return view('page.index');
+        $products = Product::latest()->paginate($per_page);
+        return view('page.index', compact('products'))->with('i', (request()->input('page', 1) - 1) * 12);
     }
 
 
     public function category($category)
     {
         $categories = Category::all();
-        $products = is_string($category) ? Product::latest()->get() : Category::find($category)->products;
-        return view('page.category', compact('categories', 'products'));
+        $products = $category == 'all' ? Product::latest()->paginate(12) : Category::find($category)->latest()->paginate(12);
+        // $products =   Product::latest()->paginate(12);
+        return view('page.category', compact('categories', 'products'))->with('i', (request()->input('page', 1) - 1) * 12);
     }
 
 
@@ -52,11 +53,12 @@ class MainController extends Controller
     {
         return view('page.contact');
     }
+
     public function subscribe(Request $request)
     {
-        $subs = Subscribe::where('email', $request->email);
+        $request->validate(['email' => 'required|email']);
 
-        if ($subs) redirect()->back()->with('status', ['type' => 'orange', 'message' => 'you are already subscribed']);
-        redirect()->back()->with('status', ['type' => 'green', 'message' => 'subscribed successfully']);
+        Subscribe::firstOrCreate(['email' => $request->email]);
+        return redirect()->back()->with('status', ['type' => 'green', 'message' => 'subscribed successfully']);
     }
 }

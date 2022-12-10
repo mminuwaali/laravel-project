@@ -3,7 +3,7 @@
         <a href="{{ route('index') }}">about</a>
         <a href="{{ route('index') }}">contact</a>
         <a href="{{ route('index') }}">categories</a>
-        <a href="{{ route('index') }}">make a quote</a>
+        <a href="{{ route('contact.index') }}">make a quote</a>
     </div>
     <span class="text-gray-500 font-bold">&copy; 2022 Workflow, Inc. All rights reserved.</span>
 </footer>

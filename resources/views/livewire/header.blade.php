@@ -1,18 +1,22 @@
 <header class="w-screen px-20 md:px-[6vw] py-8 flex items-center justify-between gap-4 sticky z-50 bg-white top-0">
     <a href="{{ route('index') }}">
         <h1 class="uppercase font-black text-blue-400 text-md md:text-2xl whitespace-nowrap" title="online shopping">
-            o-shopping</h1>
+            o-shopping
+        </h1>
         <div
-            class="grow @if (!$show) hidden @endif rounded shadow-lg left-1/2 -translate-x-1/2 md:translate-x-0 md:left-0 md:shadow-none absolute w-80 p-8 top-20 md:top-0 md:p-0 md:w-full md:relative md:flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 bg-white">
+            class="grow @if (!$show) hidden @else flex @endif rounded shadow-lg left-1/2 -translate-x-1/2 md:translate-x-0 md:left-0 md:shadow-none absolute w-80 p-8 top-20 md:top-0 md:p-0 md:w-full md:relative md:flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 bg-white">
             <nav
                 class="grow flex items-center justify-center gap-6 flex-col md:flex-row capitalize font-semibold text-gray-500 text-lg">
                 <a href="{{ route('index') }}" class="hover:text-gray-900">home</a>
                 <a href="{{ route('category', ['category' => 'all']) }}" class="hover:text-gray-900">marketplace</a>
                 <a href="{{ route('about') }}" class="hover:text-gray-900">about us</a>
-                <a href="{{ route('contact') }}" class="hover:text-gray-900">get a quote</a>
+                <a href="{{ route('contact.index') }}" class="hover:text-gray-900">get a quote</a>
             </nav>
             <div class="flex items-center justify-end gap-4 font-bold uppercase text-sm flex-col md:flex-row">
                 @auth
+                    @if (!Auth::user()->admin)
+                        <a href="{{ route('admin.index') }}" class="hover:text-gray-900">admin</a>
+                    @endif
                     <a href="{{ route('logout.index') }}"
                         class="bg-gray-100 px-8 py-1 flex items-center justify-center rounded hover:bg-gray-700 hover:text-white">
                         logout
@@ -31,14 +35,15 @@
                 @endguest
             </div>
         </div>
-        <div class="w-8 flex md:hidden flex-col justify-evenly gap-1 cursor-pointer relative ml-auto" wire:click="toggle">
+        <div class="w-8 flex md:hidden flex-col justify-evenly gap-1 cursor-pointer relative ml-auto"
+            wire:click="toggle">
             <i
                 class=" @if ($show) rotate-45 absolute @endif block w-4/5 h-1 bg-black rounded"></i>
             <i
                 class=" @if ($show) -rotate-45 absolute @endif block w-4/5 h-1 bg-black rounded"></i>
         </div>
         <div class="flex gap-4 text-white text-sm">
-            <a href="#" class="h-6 w-6 relative cursor-pointer">
+            <a href="{{ route('cart.index') }}" class="h-6 w-6 relative cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="grey">
                     <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
                     <path
@@ -47,8 +52,12 @@
                 <b
                     class="font-thin absolute top-0 right-0 w-6 h-6 rounded-full bg-black translate-x-1/2 -translate-y-1/2 flex items-center justify-center">01</b>
             </a>
-            <a href="#" class="h-6 w-6 relative cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="grey" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
+            <a href="{{ route('favorite.index') }}" class="h-6 w-6 relative cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="grey" viewBox="0 0 576 512">
+                    <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                </svg>
                 <b
                     class="font-thin absolute top-0 right-0 w-6 h-6 rounded-full bg-black translate-x-1/2 -translate-y-1/2 flex items-center justify-center">01</b>
             </a>

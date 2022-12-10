@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    @include('modal')
     <livewire:header />
     <main class="w-screen flex flex-col px-4 items-center md:px-[6vw] py-8 overflow-auto gap-8">
         @yield('content')
@@ -36,13 +37,17 @@
             </div>
         </div>
 
-        <section id="subscribe" class="w-full rounded-3xl bg-blue-700 flex gap-4 flex-col items-center justify-center p-20 py-32">
+        <section id="subscribe"
+            class="w-full rounded-3xl bg-blue-700 flex gap-4 flex-col items-center justify-center p-20 py-32">
             <h3 class="text-white text-center font-bold text-5xl">Get notified of new products.</h3>
-            <p class="text-gray-300 w-3/5 text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab consectetur ex amet.</p>
-            <form action="" method="post" class="flex gap-4 font-thinbold">
+            <p class="text-gray-300 w-3/5 text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab
+                consectetur ex amet.</p>
+            <form action="{{ route('subscribe.store') }}" method="POST" class="flex gap-4 font-thinbold">
                 @csrf
-                <input type="email" name="email" class="px-6 py-3 rounded-md w-96 outline-none" placeholder="Enter your email"  required/>
-                <input type="submit" value="notify me" class="bg-white bg-opacity-20 px-8 py-3 rounded-md text-white capitalize hover:bg-opacity-30 cursor-pointer"/>
+                <input type="email" name="email" class="px-6 py-3 rounded-md w-96 outline-none"
+                    placeholder="Enter your email" required />
+                <input type="submit" value="notify me"
+                    class="bg-white bg-opacity-20 px-8 py-3 rounded-md text-white capitalize hover:bg-opacity-30 cursor-pointer" />
             </form>
         </section>
     </main>

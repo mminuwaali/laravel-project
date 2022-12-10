@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    @include('modal')
     <section class="w-screen h-screen grid md:grid-cols-2">
         <main class="h-screen flex">
             <a href="{{ route('index') }}" class="absolute left-8 top-8 font-bold text-gray-700 border-b-2"

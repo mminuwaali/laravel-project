@@ -1,5 +1,6 @@
 <form action="{{ route('register.store') }}" method="post"
-    class="w-full bg-white flex flex-col px-[18%] py-20 md:p-1/5 gap-8 justify-center">
+class="w-full bg-white flex flex-col px-[18%] py-20 md:p-1/5 gap-8 justify-center">
+@csrf
     <div class="w-full flex flex-col items-start justify-center gap-2">
         <img src="" alt="">
         <h2 class="font-bold text-3xl md:text-4xl">Sign up to get account</h2>
